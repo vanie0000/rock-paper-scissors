@@ -37,6 +37,43 @@
             }
             return choice;
         }
+        function playRound(humanChoice, computerChoice) {
+            // your code here!
+            let str = humanChoice.toLowerCase();
+            if (str === computerChoice) {
+                return `it's a tie`;
+            }
+            if (str === "rock" && computerChoice === "paper") {
+                humanScore++;
+                return `you lose! ${computerChoice} beats ${str}`;
+            }
+            else if (str === "scissors" && computerChoice === "rock") {
+                humanScore++;
+                return `you lose! ${computerChoice} beats ${str}`;
+            }
+            else if (str === "paper" && computerChoice === "scissors") {
+                humanScore++;
+                return `you lose! ${computerChoice} beats ${str}`;
+            }
+            else if (str === "paper" && computerChoice === "paper") {
+                computerScore++;
+                return `you win! ${str} beats ${computerChoice}`;
+            }
+            else if (str === "rock" && computerChoice === "paper") {
+                return `you win! ${str} beats ${computerChoice}`;
+                computerScore++;
+            }
+            if (str === "rock" && computerChoice === "paper") {
+                return `you win! ${str} beats ${computerChoice}`;
+                computerScore++;
+            }
+        }
+
+        let humanSelection = getHumanChoice();
+        let computerSelection = getComputerChoice();
+
+        playRound(humanSelection, computerSelection);
+
     </script>
 </body>
 </html>
