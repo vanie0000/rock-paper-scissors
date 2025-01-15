@@ -21,6 +21,20 @@
             }
             return result;
         }
+        function getHumanChoice() {
+            let choice
+            let value = parseInt(prompt("enter a number among 0, 1 and 2, where 0 is rock, 1 is paper and 2 is scissors: "))
+            if (value == 0) {
+                choice = "rock"
+            }
+            else if (value == 1) {
+                choice = "paper"
+            }
+            else {
+                choice = "scissors"
+            }
+            return choice;
+        }
     </script>
 </body>
 </html>
