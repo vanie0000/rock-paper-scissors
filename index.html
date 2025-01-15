@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Rock Paper Scissors Game</title>
 </head>
 <body>
     <script>
@@ -12,10 +12,10 @@
         function getComputerChoice() {
             let result
             let value = Math.floor(Math.random() * 3) //picks one of three values, 0 1 and 2
-            if (value == 0) {
+            if (value === 0) {
                 result = "rock"
             }
-            else if (value == 1) {
+            else if (value === 1) {
                 result = "paper"
             }
             else {
@@ -26,10 +26,10 @@
         function getHumanChoice() {
             let choice
             let value = parseInt(prompt("enter a number among 0, 1 and 2, where 0 is rock, 1 is paper and 2 is scissors: "))
-            if (value == 0) {
+            if (value === 0) {
                 choice = "rock"
             }
-            else if (value == 1) {
+            else if (value === 1) {
                 choice = "paper"
             }
             else {
@@ -43,36 +43,42 @@
             if (str === computerChoice) {
                 return `it's a tie`;
             }
-            if (str === "rock" && computerChoice === "paper") {
-                humanScore++;
+            if (str === "rock" && computerChoice === "paper" || str === "scissors" && computerChoice === "rock" || str === "paper" && computerChoice === "scissors") {
+                computerScore++;
                 return `you lose! ${computerChoice} beats ${str}`;
             }
-            else if (str === "scissors" && computerChoice === "rock") {
+            else {
                 humanScore++;
-                return `you lose! ${computerChoice} beats ${str}`;
-            }
-            else if (str === "paper" && computerChoice === "scissors") {
-                humanScore++;
-                return `you lose! ${computerChoice} beats ${str}`;
-            }
-            else if (str === "paper" && computerChoice === "paper") {
-                computerScore++;
                 return `you win! ${str} beats ${computerChoice}`;
-            }
-            else if (str === "rock" && computerChoice === "paper") {
-                return `you win! ${str} beats ${computerChoice}`;
-                computerScore++;
-            }
-            if (str === "rock" && computerChoice === "paper") {
-                return `you win! ${str} beats ${computerChoice}`;
-                computerScore++;
             }
         }
 
-        let humanSelection = getHumanChoice();
-        let computerSelection = getComputerChoice();
+        function playGame() {
+            let rounds = 0;
+            while (rounds < 5) {
+                let humanSelection = getHumanChoice();
+                let computerSelection = getComputerChoice();
 
-        playRound(humanSelection, computerSelection);
+                let result = playRound(humanSelection, computerSelection);
+
+                console.log(`Round ${rounds + 1}: ${result}`);
+                console.log(`Current score - You: ${humanScore}, Computer: ${computerScore}`);
+                rounds++;
+            }
+            console.log("\nFinal Scores:");
+            console.log(`You: ${humanScore}`);
+            console.log(`Computer: ${computerScore}`);
+            if (humanScore > computerScore) {
+                console.log("Congratulations! You won the game!");
+            } 
+            else if (computerScore > humanScore) {
+                console.log("Game Over! Computer wins!");
+            } 
+            else {
+                console.log("It's a tie game!");
+            }
+        }
+        playGame()
 
     </script>
 </body>
